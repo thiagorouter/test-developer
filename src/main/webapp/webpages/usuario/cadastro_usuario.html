@@ -1,0 +1,115 @@
+<div class="page-header">
+    <h3>Cadastro de usuário</h3>
+</div>
+
+<form name="form"
+      class="form-horizontal"
+      ng-submit="inserirUsuario(form.$valid)"
+      ng-controller="CadastroUsuarioController"
+      novalidate>
+
+    <div class="form-group">
+
+        <div class="row">
+
+            <label class="control-label col-sm-1" for="username">Nome:</label>
+
+            <div class="col-sm-3">
+                <div class="form-group"
+                     ng-class="{ 'has-error' : form.username.$invalid && form.username.$dirty}">
+
+                    <input type="text"
+                           name="username"
+                           class="form-control"
+                           id="username"
+                           ng-model="user.name"
+                           ng-maxlength=18
+                           ng-minlength=5
+                           required="required"/>
+
+                    <p class="help-block"
+                       ng-show="form.username.$error.required && form.username.$dirty">Nome obrigatório.</p>
+
+                    <p class="help-block"
+                       ng-show="(form.username.$error.minlength || form.username.$error.maxlength) && form.username.$dirty">
+                        Nome do usuário deve conter entre 5 e 18 caracteres.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="control-label col-sm-1" for="userpassword">Senha:</label>
+
+            <div class="col-sm-3">
+                <div class="form-group"
+                     ng-class="{ 'has-error' : form.userpassword.$invalid && form.userpassword.$dirty}">
+                    <input type="password"
+                           name="userpassword"
+                           class="form-control password-field"
+                           id="userpassword"
+                           ng-model="user.password"
+                           ng-maxlength=20
+                           ng-minlength=8
+                           required="required"/>
+
+                    <p class="help-block floating"
+                       ng-show="form.userpassword.$error.required && form.userpassword.$dirty">Senha obrigatória.</p>
+
+                    <p class="help-block"
+                       ng-show="(form.userpassword.$error.minlength || form.userpassword.$error.maxlength) && form.userpassword.$dirty">
+                        Senha deve conter entre 8 e 20 caracteres.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="row">
+
+            <label class="control-label col-sm-1" for="cep">CEP:</label>
+
+            <div class="col-sm-3">
+                <div class="form-group"
+                     ng-class="{ 'has-error' : form.cep.$invalid && form.cep.$dirty}">
+
+                    <input type="number"
+                           name="cep"
+                           class="form-control"
+                           id="cep"
+                           ng-model="logradouro.cep"
+                           ng-maxlength=8
+                           ng-minlength=8
+                           required="required"/>
+
+                    <input
+                            type="button"
+                            class="btn btn-primary glyphicon glyphicon-ok"
+                            ng-disabled="form.$invalid"
+                            value="Buscar Endereço"
+                            ng-click="deleteEntry(newsEntry)"/>
+
+
+
+                    <p class="help-block"
+                       ng-show="form.cep.$error.required && form.cep.$dirty">CEP obrigatório.</p>
+
+                    <p class="help-block"
+                       ng-show="(form.cep.$error.minlength || form.cep.$error.maxlength) && form.cep.$dirty">
+                        CEP deve conter oito digitos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <input
+                    type="submit"
+                    class="btn btn-primary glyphicon glyphicon-ok"
+                    ng-disabled="form.$invalid"
+                    value="Salvar"/>
+        </div>
+    </div>
+</form>
